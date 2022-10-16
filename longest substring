@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        set<char>sets;
+        int left=0,right=0;
+        int result=0;
+        while(right<s.size()){
+            if(sets.find(s[right])!=sets.end()){
+                //that character exists
+                sets.erase(s[left]);
+                left++;
+            }else{
+                sets.insert(s[right]);
+                right++;
+                result=max(result,(int)sets.size());
+            }
+        }
+        return result;
+    }
+};
